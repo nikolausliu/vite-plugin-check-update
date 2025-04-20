@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-check-update",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Vite plugin that monitors dist bundle updates at runtime and prompts users to refresh when new versions are deployed",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
