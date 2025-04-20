@@ -4,12 +4,12 @@ import {
   readdirSync,
   writeFileSync,
   statSync,
-  mkdirSync
+  mkdirSync,
 } from 'fs'
 import { join, relative, dirname } from 'path'
 import { type BinaryToTextEncoding, createHash } from 'crypto'
 
-export interface VitePluginCheckVersionOptions {
+export interface VitePluginCheckUpdateOptions {
   /** 指定版本文件的路径，相对于build.outDir
    * @example
    * ```
@@ -40,8 +40,8 @@ export interface VitePluginCheckVersionOptions {
   checkTip?: string
 }
 
-export default function vitePluginCheckVersion(
-  options: VitePluginCheckVersionOptions = {}
+export default function vitePluginCheckUpdate(
+  options: VitePluginCheckUpdateOptions = {}
 ): PluginOption {
   const {
     versionFile = 'version.json',
@@ -51,7 +51,7 @@ export default function vitePluginCheckVersion(
     silent = false,
     checkScriptFile = 'version-check.js',
     pollInterval = 10 * 1000,
-    checkTip = '发现新版本，是否立即刷新获取最新内容？'
+    checkTip = '发现新版本，是否立即刷新获取最新内容？',
   } = options
 
   // vite config.build.outDir
@@ -63,7 +63,7 @@ export default function vitePluginCheckVersion(
   let versionValue = ''
 
   return {
-    name: 'vite-plugin-check-version',
+    name: 'vite-plugin-check-update',
 
     configResolved(config) {
       outDir = config.build.outDir
@@ -75,7 +75,10 @@ export default function vitePluginCheckVersion(
       if (silent) return html
 
       // 自动注入检测脚本
-      const scriptTag = `\n<script src="${join(basePath, checkScriptFile).replace(/\\/g, '/')}"></script>`
+      const scriptTag = `\n<script src="${join(
+        basePath,
+        checkScriptFile
+      ).replace(/\\/g, '/')}"></script>`
       if (/<\/head>/i.test(html)) {
         return html.replace(/<\/head>/i, `${scriptTag}\n</head>`)
       }
@@ -148,14 +151,14 @@ export default function vitePluginCheckVersion(
 
         mkdirSync(dirname(checkScriptPath), { recursive: true })
         writeFileSync(checkScriptPath, checkScriptContent)
-      }
-    }
+      },
+    },
   }
 }
 
 // 递归遍历目录
 function walkDir(dir: string, callback: (path: string) => void) {
-  readdirSync(dir).forEach(file => {
+  readdirSync(dir).forEach((file) => {
     const path = join(dir, file)
     if (statSync(path).isDirectory()) {
       walkDir(path, callback)
@@ -169,7 +172,7 @@ function walkDir(dir: string, callback: (path: string) => void) {
 function calcDirHash(dir: string, encoding: BinaryToTextEncoding): string {
   const hash = createHash('md5')
   const files: { path: string; content: Buffer }[] = []
-  walkDir(dir, filePath => {
+  walkDir(dir, (filePath) => {
     const relativePath = relative(dir, filePath)
     const content = readFileSync(filePath)
     files.push({ path: relativePath, content })

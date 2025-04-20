@@ -1,4 +1,4 @@
-# vite-plugin-check-version
+# vite-plugin-check-update
 
 English | [简体中文](./README.md)
 
@@ -15,7 +15,7 @@ A Vite plugin for detecting and prompting page updates. When a new version is de
 ## Installation
 
 ```bash
-npm install vite-plugin-check-version -D
+npm install vite-plugin-check-update -D
 ```
 
 ## Usage
@@ -26,16 +26,16 @@ The plugin automatically generates and injects the version detection script into
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckVersion from 'vite-plugin-check-version'
+import vitePluginCheckUpdate from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
-    vitePluginCheckVersion({
+    vitePluginCheckUpdate({
       // Optional configuration
       pollInterval: 5000, // Set detection interval to 5 seconds
-      checkTip: 'New version ready, click OK to update now' // Custom prompt text
-    })
-  ]
+      checkTip: 'New version ready, click OK to update now', // Custom prompt text
+    }),
+  ],
 })
 ```
 
@@ -45,15 +45,15 @@ If you want to customize the version detection logic, you can disable automatic 
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckVersion from 'vite-plugin-check-version'
+import vitePluginCheckUpdate from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
-    vitePluginCheckVersion({
+    vitePluginCheckUpdate({
       silent: true, // Disable automatic injection
-      versionFile: 'meta/version.json' // Custom version file path
-    })
-  ]
+      versionFile: 'meta/version.json', // Custom version file path
+    }),
+  ],
 })
 ```
 
@@ -94,7 +94,7 @@ checkUpdate()
 ## Configuration Options
 
 ```ts
-interface VitePluginCheckVersionOptions {
+interface vitePluginCheckUpdateOptions {
   // Version file path, relative to dist directory
   versionFile?: string // Default: 'version.json'
   // Version information key name

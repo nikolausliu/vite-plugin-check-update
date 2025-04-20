@@ -1,4 +1,4 @@
-# vite-plugin-check-version
+# vite-plugin-check-update
 
 [English](./README.en.md) | 简体中文
 
@@ -15,7 +15,7 @@
 ## 安装
 
 ```bash
-npm install vite-plugin-check-version -D
+npm install vite-plugin-check-update -D
 ```
 
 ## 使用方法
@@ -26,16 +26,16 @@ npm install vite-plugin-check-version -D
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckVersion from 'vite-plugin-check-version'
+import vitePluginCheckUpdate from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
-    vitePluginCheckVersion({
+    vitePluginCheckUpdate({
       // 可选配置
       pollInterval: 5000, // 设置检测间隔为5秒
-      checkTip: '新版本已就绪，点击确定立即更新' // 自定义提示文本
-    })
-  ]
+      checkTip: '新版本已就绪，点击确定立即更新', // 自定义提示文本
+    }),
+  ],
 })
 ```
 
@@ -45,15 +45,15 @@ export default defineConfig({
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckVersion from 'vite-plugin-check-version'
+import vitePluginCheckUpdate from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
-    vitePluginCheckVersion({
+    vitePluginCheckUpdate({
       silent: true, // 禁用自动注入
-      versionFile: 'meta/version.json' // 自定义版本文件路径
-    })
-  ]
+      versionFile: 'meta/version.json', // 自定义版本文件路径
+    }),
+  ],
 })
 ```
 
@@ -94,7 +94,7 @@ checkUpdate()
 ## 配置选项
 
 ```ts
-interface VitePluginCheckVersionOptions {
+interface VitePluginCheckUpdateOptions {
   // 版本文件路径，相对于 dist 目录
   versionFile?: string // 默认: 'version.json'
   // 版本信息的键名
