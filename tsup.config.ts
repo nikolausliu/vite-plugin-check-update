@@ -7,5 +7,6 @@ export default defineConfig({
   splitting: false,
   clean: true,
   shims: false,
-  minify: false
+  minify: false,
+  treeshake: false,
 })

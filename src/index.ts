@@ -40,7 +40,8 @@ export interface VitePluginCheckUpdateOptions {
   checkTip?: string
 }
 
-export default function vitePluginCheckUpdate(
+// 由默认导出export default改为具名导出，参考 https://github.com/egoist/tsup/issues/1273
+export function vitePluginCheckUpdate(
   options: VitePluginCheckUpdateOptions = {}
 ): PluginOption {
   const {

@@ -26,7 +26,7 @@ npm install vite-plugin-check-update -D
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckUpdate from 'vite-plugin-check-update'
+import { vitePluginCheckUpdate } from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
@@ -45,7 +45,7 @@ export default defineConfig({
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckUpdate from 'vite-plugin-check-update'
+import { vitePluginCheckUpdate } from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [

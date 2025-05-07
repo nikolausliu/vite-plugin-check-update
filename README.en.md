@@ -26,7 +26,7 @@ The plugin automatically generates and injects the version detection script into
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckUpdate from 'vite-plugin-check-update'
+import { vitePluginCheckUpdate } from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
@@ -45,7 +45,7 @@ If you want to customize the version detection logic, you can disable automatic 
 
 ```ts
 import { defineConfig } from 'vite'
-import vitePluginCheckUpdate from 'vite-plugin-check-update'
+import { vitePluginCheckUpdate } from 'vite-plugin-check-update'
 
 export default defineConfig({
   plugins: [
